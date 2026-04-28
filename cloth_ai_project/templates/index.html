@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Outfit Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>👗 AI Fashion Stylist</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="form-box">
+
+        <label>Gender</label>
+        <select name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label>Occasion</label>
+        <select name="occasion">
+            <option value="casual">Casual</option>
+            <option value="party">Party</option>
+            <option value="formal">Formal</option>
+        </select>
+
+        <label>Color Preference</label>
+        <input type="text" name="color" placeholder="e.g. black, blue">
+
+        <label>Season</label>
+        <select name="season">
+            <option value="summer">Summer</option>
+            <option value="winter">Winter</option>
+        </select>
+
+        <button type="submit">✨ Generate Outfit</button>
+        <label>Upload Outfit Photo</label>
+<input type="file" name="photo" accept="image/*">
+
+    </form>
+
+    <div class="result-area">
+
+    {% if outfit %}
+    <div class="card">
+        <h2>Recommended Outfit</h2>
+        <p>{{ outfit }}</p>
+    </div>
+    {% endif %}
+
+    {% if uploaded_image %}
+    <div class="card">
+        <h2>Your Uploaded Outfit</h2>
+        <img src="{{ uploaded_image }}">
+        <p>{{ ai_tip }}</p>
+    </div>
+    {% endif %}
+
+    {% if image %}
+    <div class="card">
+        <h2>AI Generated Outfit</h2>
+        <img src="{{ image }}">
+    </div>
+    {% endif %}
+
+</div>
+
+
+</body>
+</html>
